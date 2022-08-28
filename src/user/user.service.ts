@@ -9,9 +9,8 @@ import { UserRespository } from './user.repository';
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserRespository) private userRepository: UserRespository,
-    @InjectRepository(RoleRepository) private roleRepository: RoleRepository,
-    @InjectRepository(PermissionRepository)
+    private userRepository: UserRespository,
+    private roleRepository: RoleRepository,
     private permissionRepository: PermissionRepository,
   ) {}
 
@@ -33,13 +32,12 @@ export class UserService {
   }
 
   async createUser(userDetails: {
-    address: string;
     email: string;
     name: string;
     password: string;
     role_name: string;
   }): Promise<User> {
-    const { address, email, name, password, role_name } = userDetails;
+    const { email, name, password, role_name } = userDetails;
     const role = await this.roleRepository.findOne({
       where: { name: role_name },
     });
@@ -47,7 +45,6 @@ export class UserService {
       throw new NotFoundException('Role not found');
     }
     const newUser = await this.userRepository.createUser({
-      address: address,
       email: email,
       name: name,
       password: password,

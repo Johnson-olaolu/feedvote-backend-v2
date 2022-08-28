@@ -6,6 +6,9 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
+import { CompanyModule } from './company/company.module';
+import { SeedModule } from './shared/seed.module';
+import { CommandModule } from 'nestjs-command';
 
 @Module({
   imports: [
@@ -15,6 +18,9 @@ import { typeOrmConfig } from './config/typeorm.config';
       isGlobal: true,
     }),
     UserModule,
+    SeedModule,
+    CompanyModule,
+    CommandModule,
   ],
   controllers: [AppController],
   providers: [AppService],

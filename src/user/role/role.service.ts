@@ -7,8 +7,7 @@ import { PermissionRepository } from '../permission/permission.repository';
 @Injectable()
 export class RoleService {
   constructor(
-    @InjectRepository(RoleRepository) private roleRepository: RoleRepository,
-    @InjectRepository(PermissionRepository)
+    private roleRepository: RoleRepository,
     private permissionRespository: PermissionRepository,
   ) {}
 

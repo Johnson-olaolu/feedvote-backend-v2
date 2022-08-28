@@ -3,15 +3,16 @@ import { User } from './user.entity';
 import * as bcrypt from 'bcryptjs';
 import { Role } from './role/role.entity';
 import { Repository } from 'typeorm';
+import { CustomRepository } from 'src/config/db/typeorm-ex.decorator';
 
-@Injectable()
+@CustomRepository(User)
 export class UserRespository extends Repository<User> {
   async createUser(userDetails: {
     name: string;
     email: string;
     profile_img?: string;
+    username?: string;
     password: string;
-    address: string;
     role: Role;
   }) {
     const newUser = new User();

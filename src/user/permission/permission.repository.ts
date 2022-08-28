@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { CustomRepository } from 'src/config/db/typeorm-ex.decorator';
 import { Repository } from 'typeorm';
 import { Permission } from './permission.entity';
 
-@Injectable()
+@CustomRepository(Permission)
 export class PermissionRepository extends Repository<Permission> {
   async createPermission(permissionDetails: {
     name: string;

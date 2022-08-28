@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmExModule } from 'src/config/db/typeorm-ex.module';
 import { PermissionRepository } from './permission/permission.repository';
 import { PermissionService } from './permission/permission.service';
-import { Role } from './role/role.entity';
 import { RoleRepository } from './role/role.repository';
 import { RoleService } from './role/role.service';
 import { UserController } from './user.controller';
@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([
+    TypeOrmExModule.forCustomRepository([
       RoleRepository,
       UserRespository,
       PermissionRepository,
@@ -19,5 +19,6 @@ import { UserService } from './user.service';
   ],
   controllers: [UserController],
   providers: [UserService, RoleService, UserService, PermissionService],
+  exports: [UserService, RoleService, PermissionService, TypeOrmExModule],
 })
 export class UserModule {}
