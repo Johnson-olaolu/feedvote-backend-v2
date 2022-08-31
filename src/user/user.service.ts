@@ -36,6 +36,7 @@ export class UserService {
     name: string;
     password: string;
     role_name: string;
+    userName?: string;
   }): Promise<User> {
     const { email, name, password, role_name } = userDetails;
     const role = await this.roleRepository.findOne({

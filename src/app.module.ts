@@ -9,6 +9,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { CompanyModule } from './company/company.module';
 import { SeedModule } from './shared/seed.module';
 import { CommandModule } from 'nestjs-command';
+import { FeedModule } from './feed/feed.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { CommandModule } from 'nestjs-command';
     SeedModule,
     CompanyModule,
     CommandModule,
+    FeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],

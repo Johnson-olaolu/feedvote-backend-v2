@@ -10,6 +10,7 @@ import {
 
 import * as bcrypt from 'bcryptjs';
 import { Role } from './role/role.entity';
+import { Company } from 'src/company/entities/company.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -43,6 +44,9 @@ export class User extends BaseEntity {
     nullable: false,
   })
   password: string;
+
+  @ManyToOne(() => Company, (comapny) => comapny.users)
+  company: Company;
 
   @CreateDateColumn()
   createdAt: Date;
